@@ -1,0 +1,28 @@
+@import "../../../colors";
+
+.wrap {
+  min-width: auto;
+  height: 100%;
+  padding: 30px 20px;
+
+  background-color: black;
+
+  .button {
+    color: $white-color;
+  }
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.menu {
+  justify-content: center;
+
+  a {
+    color: $white-color;
+  }
+}
+

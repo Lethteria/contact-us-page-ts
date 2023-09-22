@@ -1,0 +1,44 @@
+div.contacts {
+  margin: 0;
+
+  .item {
+    margin-bottom: 1rem;
+
+    a {
+      margin: 0;
+
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
+}
+
+
+@media (min-width: 600px){
+  .title {
+    text-align: center;
+  }
+}
+
+@media (min-width: 900px){
+  .contacts {
+    display: flex;
+
+    .item  {
+      width: 33.33%;
+    }
+  }
+}
+
+@media (min-width: 1200px){
+  .title {
+    text-align: left;
+  }
+  .contacts {
+    flex-direction: column;
+
+    .item  {
+      width: 100%;
+    }
+  }
+}

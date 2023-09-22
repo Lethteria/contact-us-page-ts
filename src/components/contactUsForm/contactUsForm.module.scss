@@ -1,0 +1,55 @@
+@import "../../colors";
+.wrap {
+  padding: 2.5rem;
+
+  h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .button {
+    text-transform: capitalize;
+    font-size: 1rem;
+    font-weight: 500;
+
+    background-color: $black-color;
+
+    &:hover {
+      background-color: $grey-main-color;
+    }
+  }
+}
+.input {
+  input {
+    color: $grey-second-color;
+    &:active {
+      color: #222222;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: #222222;
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 30px #ffff inset;
+      -moz-box-shadow: 0 0 0 30px #fff inset !important;
+      -o-box-shadow: 0 0 0 30px #fff inset !important;
+    }
+    &:-webkit-autofill {
+      -webkit-text-fill-color: $grey-second-color;
+    }
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+      -webkit-text-fill-color: #222222;
+    }
+  }
+
+  p {
+    position: absolute;
+    bottom: -20px;
+  }
+}
+

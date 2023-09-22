@@ -1,0 +1,22 @@
+@import "../../../colors";
+
+.link {
+  &:hover {
+    text-decoration: underline;
+    color: $grey-main-color;
+  }
+  svg {
+    transform: rotate(0deg);
+    transition: transform 300ms
+  }
+  svg.opened {
+    transform: rotate(180deg);
+  }
+}
+
+.submenu {
+  a {
+    color: #1f1f1f;
+    text-decoration: none;
+  }
+}

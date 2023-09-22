@@ -1,0 +1,25 @@
+@import "../../colors";
+
+.wrap {
+  padding: 0.5rem;
+  border-radius: 10px;
+  background: $white-color no-repeat right 50% bottom -50px /150px url("../../assets/img/letter_send 1.png");
+}
+
+@media (min-width: 600px){
+  .wrap {
+    background: $white-color no-repeat right 20% bottom -50px /150px url("../../assets/img/letter_send 1.png");
+  }
+}
+
+@media (min-width: 900px){
+  .wrap {
+    background: $white-color no-repeat right 20% bottom -70px /180px url("../../assets/img/letter_send 1.png");
+  }
+}
+
+@media (min-width: 1200px){
+  .wrap {
+    background: $white-color no-repeat right 20% bottom -20% /25% url("../../assets/img/letter_send 1.png");
+  }
+}

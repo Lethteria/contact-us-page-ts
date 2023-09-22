@@ -1,0 +1,21 @@
+@import "../../../src/colors";
+.wrap {
+  padding-top: 10px;
+  background-color: $background-color;
+}
+
+.wrap {
+  padding-top: 10px;
+}
+
+@media (min-width: 600px){
+  .wrap {
+    padding-top: 25px;
+  }
+}
+
+@media (min-width: 1200px){
+  .wrap {
+    padding: 50px 0;
+  }
+}

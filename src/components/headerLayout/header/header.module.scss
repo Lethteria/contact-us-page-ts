@@ -1,0 +1,37 @@
+@import "../../../colors";
+
+header.wrap {
+  padding: 1.5rem 0;
+  background-color: $background-color;
+}
+
+.drawerWrap {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+
+  color: black;
+
+  button {
+    padding-right: 0;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+.menu {
+  display: none;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
+@media (min-width: 900px){
+  .drawerWrap {
+    display: none;
+  }
+  .menu {
+    display: flex;
+  }
+}

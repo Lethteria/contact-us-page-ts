@@ -1,0 +1,69 @@
+@import "../../../src/colors";
+
+.wrap {
+  margin-bottom: 1rem;
+
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-left: 15%;
+    margin-right: 15%;
+
+    text-decoration: none;
+    color: $white-color;
+    text-align: center;
+
+    &:hover {
+      text-decoration: underline;
+      color: $grey-second-color;
+    }
+  }
+
+  .text {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (min-width: 600px){
+  .wrap {
+    a {
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+
+      text-align: left;
+
+      .text {
+        margin-top: 0;
+        padding-left: 1.5rem;
+
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 900px){
+  .wrap {
+    margin-bottom: 1.5rem;
+    a {
+      margin-left: 0;
+      margin-right: 0;
+      justify-content: flex-start;
+    }
+  }
+}
+
+@media (min-width: 1200px){
+  .wrap {
+    margin-bottom: 3rem;
+    a {
+      margin-left: 0;
+      margin-right: 0;
+      justify-content: flex-start;
+    }
+  }
+}
