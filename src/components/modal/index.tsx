@@ -19,9 +19,9 @@ export default function Modal(props: ModalProps){
         <Dialog onClose={onCloseModal}
                 open={openModal}
         >
-            {/*<Alert onClose={onCloseModal}>
+            {<Alert onClose={onCloseModal}>
                 Your data was send
-            </Alert>*/}
+            </Alert>}
 
             <div className={styles.wrap}>
 

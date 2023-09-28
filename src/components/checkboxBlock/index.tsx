@@ -14,7 +14,7 @@ export default function CheckboxBlock(props: CheckboxBlockProps){
 
     const {labels, isChecked, onChange} = props;
 
-    const checkboxList = labels.map((item,index) => (
+    const checkboxList = labels.map((item) => (
         <FormControlLabel control={<Checkbox
             color="default"
             size="small"

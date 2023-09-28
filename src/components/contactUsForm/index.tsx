@@ -3,7 +3,7 @@ import styles from "./contactUsForm.module.scss";
 
 import {checkboxLabels, inputData} from "../../data/formIntups";
 import {Button, Grid, TextField} from "@mui/material";
-import {ICheckbox, IFormValues, IInputField} from "../../types/forms";
+import {ICheckbox, IFormValues} from "../../types/forms";
 import CheckboxBlock from "../checkboxBlock";
 import Modal from "../modal";
 
