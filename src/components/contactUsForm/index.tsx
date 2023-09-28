@@ -1,27 +1,26 @@
 import React, {useState} from "react";
 import styles from "./contactUsForm.module.scss";
+
+import {checkboxLabels, inputData} from "../../data/formIntups";
 import {Button, Grid, TextField} from "@mui/material";
-import {IFormValues, IInputField} from "../../types/forms";
+import {ICheckbox, IFormValues, IInputField} from "../../types/forms";
+import CheckboxBlock from "../checkboxBlock";
+import Modal from "../modal";
 
 export default function ContactUsForm(){
 
-    const inputDataArr: Array<IInputField> = [
-        {label: "First Name",
-         name: "firstName",
-         type: "text"},
-        {label: "Last Name",
-         name: "lastName",
-         type: "text"},
-        {label: "Email",
-         name: "email",
-         type: "email"},
-        {label: "Phone Number",
-         type: "number",
-         name: "phone",
-         placeholder: "380507308340"}
-    ]
+    const [openModal, setOpenModal] = useState(false);
 
-    const initialState:IFormValues = {
+    const onOpenModal = () => {
+        setOpenModal(true);
+    };
+
+    const onCloseModal = () => {
+        setOpenModal(false);
+    };
+
+
+    const initialInputState:IFormValues = {
         firstName: "",
         lastName: "",
         email: "",
@@ -29,20 +28,47 @@ export default function ContactUsForm(){
         message: ""
     }
 
-    const [inputValues, setInputValues] = useState<IFormValues>(initialState);
+    let obj:ICheckbox = {}
+    const initialCheckboxState: ICheckbox = checkboxLabels.reduce(
+        (result, item) => {
+            let key = item;
+            result[key] =  false
+            return result
+        }
+        , obj
+    )
+
+    const [inputValues, setInputValues] = useState<IFormValues>(initialInputState);
+
+    const [isChecked, setIsChecked] = useState(initialCheckboxState);
+
     function onChangeInput(e:React.ChangeEvent<HTMLInputElement>){
         let value = e.target.value
         let name = e.target.name
         setInputValues((prevState) => { return {...prevState, [name]: value} })
     }
 
+    function onChangeChecked(e: React.ChangeEvent<HTMLInputElement>){
+        let target = e.target
+        let key = target.value
+        setIsChecked({...isChecked,
+                [key]: target.checked
+            }
+        );
+    }
+
+    function onSubmitForm(e: React.FormEvent<HTMLFormElement>){
+        e.preventDefault();
+        onOpenModal();
+    }
+
     return(
         <div className={styles.wrap}>
 
-            <form >
+            <form onSubmit={onSubmitForm}>
                 <Grid container justifyContent="flex-end" spacing={5}>
                     {
-                        inputDataArr.map((item) => (
+                        inputData.map((item) => (
                             <Grid item xs={12} sm={6} key={item.name}>
                                 <TextField
                                     label={item.label}
@@ -66,6 +92,16 @@ export default function ContactUsForm(){
                             </Grid>
                         ))
                     }
+
+                    <Grid item xs={12}>
+                        <h4>Select Subject?</h4>
+                        <CheckboxBlock labels={checkboxLabels}
+                                       isChecked={isChecked}
+                                       onChange={onChangeChecked}
+                                       //checkedArr={formik.values.checked}
+                                       //onChange = {formik.handleChange}
+                        />
+                    </Grid>
 
                     <Grid item xs={12}>
                         <TextField
@@ -99,6 +135,11 @@ export default function ContactUsForm(){
 
                 </Grid>
             </form>
+
+            <Modal openModal={openModal}
+                   onCloseModal={onCloseModal}
+                   selectedValue={[inputValues, isChecked]}
+            />
 
         </div>
     )

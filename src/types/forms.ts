@@ -5,6 +5,10 @@ export interface IInputField {
     placeholder?: string
 }
 
+export interface ICheckbox  {
+    [propName: string]: boolean
+}
+
 export interface IFormValues {
     firstName: string,
     lastName: string,

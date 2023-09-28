@@ -2,24 +2,24 @@ import {INavColumn, INavLink} from "../types/navigation";
 
 export const pages: INavLink[] = [
     {href: "#",
-        text: "Home"
+     text: "Home"
     },
     {text: "Features",
-        href: "#",
-        subLinks: [{text: 'item1', href: "#"},{text: 'item2', href: "#"}]
+     href: "#",
+     subLinks: [{text: 'item1', href: "#"},{text: 'item2', href: "#"}]
     },
     {text: "Blog",
-        href: "#"
+     href: "#"
     },
     {text: "Shop",
-        href: "#",
-        subLinks: [{text: 'item4', href: "#"},{text: 'item5', href: "#"},{text: 'item6', href: "#"}]
+     href: "#",
+     subLinks: [{text: 'item4', href: "#"},{text: 'item5', href: "#"},{text: 'item6', href: "#"}]
     },
     {text: "About",
-        href: "#"
+     href: "#"
     },
     {text: "Contact",
-        href: "#"
+     href: "#"
     }
 ];
 
