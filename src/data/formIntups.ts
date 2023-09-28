@@ -17,8 +17,8 @@ export const inputData: Array<IInputField> = [
 ]
 
 export const checkboxLabels: Array<string> = [
-    "General Inquiry1",
-    "General Inquiry2",
-    "General Inquiry3",
-    "General Inquiry4"
+    "General Inquiry 1",
+    "General Inquiry 2",
+    "General Inquiry 3",
+    "General Inquiry 4"
 ];

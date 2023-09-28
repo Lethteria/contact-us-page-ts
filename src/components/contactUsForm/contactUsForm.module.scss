@@ -3,7 +3,7 @@
   padding: 2.5rem;
 
   h4 {
-    font-size: 0.875rem;
+    //font-size: 0.875rem;
     font-weight: 600;
   }
 
@@ -17,6 +17,10 @@
     &:hover {
       background-color: $grey-main-color;
     }
+  }
+
+  label {
+    font-size: 1.25rem;
   }
 }
 .input {

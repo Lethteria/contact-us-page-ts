@@ -112,6 +112,9 @@ export default function ContactUsForm(){
                             color="greyColor"
                             variant = "standard"
                             fullWidth
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
                             //focused
                             value={inputValues.message}
                             onChange={onChangeInput}

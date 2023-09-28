@@ -26,24 +26,11 @@ div.submenu {
     border-bottom-right-radius: 4px;
   }
 
-  p {
-    font-size: 0.875rem;
-  }
-
   a {
     margin-bottom: 1rem;
     color: black;
     &:last-child {
       margin-bottom: 0;
-    }
-  }
-}
-
-@media (min-width: 600px){
-
-  div.submenu {
-    p {
-      font-size: 1rem;
     }
   }
 }
