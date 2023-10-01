@@ -1,25 +1,14 @@
 import React, {useState} from "react";
 import styles from "./subscribeForm.module.scss";
-import {Validate} from "./validateSubscribeForm";
 import {Alert, Button, TextField} from "@mui/material";
-//import {useFormik} from "formik";
+import {useFormik} from "formik";
+import {FormValidate} from "../../helpFunctions/validateForm";
+import {ISubscrFormVal, IValidateVal} from "../../types/forms";
 
 export default function SubscribeForm(){
 
     const [openAlert, setOpenAlert] = useState(false);
 
-    const [value, setValue] = useState<string>("")
-
-    function onChange(e:React.ChangeEvent<HTMLInputElement>){
-        setValue(e.target.value)
-    }
-
-    function onSubmit(e:React.FormEvent<HTMLFormElement>){
-        e.preventDefault()
-        onOpen();
-        console.log(value)
-        setValue("")
-    }
     function onClose(): void{
         setOpenAlert(false)
     }
@@ -27,34 +16,35 @@ export default function SubscribeForm(){
     function onOpen(): void{
         setOpenAlert(true)
     }
+    const initialInputState:IValidateVal<ISubscrFormVal> = {form: "subscribe",
+                                                                  values: {email: ""}
+                                                                 }
+    const validate = FormValidate(initialInputState);
 
-    /*const validate = Validate;
     const formik = useFormik({
-        initialValues: {email: ""},
+        initialValues:initialInputState.values,
         validate,
         onSubmit: (values, {resetForm}) => {
             onOpen();
+            console.log(values)
             resetForm();
         }
-    });*/
+    });
 
     return (
         <div className={styles.wrap}>
-            <form  onSubmit={onSubmit}>
+            <form  onSubmit={formik.handleSubmit}>
                 <TextField
                     type="textarea"
                     placeholder="Your email address"
                     variant="standard"
                     color="greyColor"
                     className={styles.input}
-                    name="email"
-                    value={value}
-                    onChange={onChange}
-                    //value={formik.values.email}
-                    //onChange={formik.handleChange}
-                    //onBlur={formik.handleBlur}
-                    //error={formik.touched.email && Boolean(formik.errors.email)}
-                    //helperText={formik.errors.email}
+                    {...formik.getFieldProps('email')}
+
+                    onBlur={formik.handleBlur}
+                    error={formik.touched.email && Boolean(formik.errors.email)}
+                    helperText={formik.errors.email}
                 />
 
                 <Button variant="contained"

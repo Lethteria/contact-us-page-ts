@@ -6,13 +6,13 @@ import {ICheckbox} from "../../types/forms";
 
 type CheckboxBlockProps = {
     labels: string[]
-    isChecked: ICheckbox
+    checkedArr: string[]
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export default function CheckboxBlock(props: CheckboxBlockProps){
 
-    const {labels, isChecked, onChange} = props;
+    const {labels, checkedArr, onChange} = props;
 
     const checkboxList = labels.map((item) => (
         <FormControlLabel control={<Checkbox
@@ -20,9 +20,10 @@ export default function CheckboxBlock(props: CheckboxBlockProps){
             size="small"
             icon={<Circle className={styles.unchecked}/>}
             checkedIcon={<CheckCircle className={styles.checked}/>}
-            name='contact-us'
+            name='checked'
             value={item}
-            checked={isChecked[item]}
+
+            checked={checkedArr.includes(item)}
             onChange={onChange}
         />}
                           label={item}

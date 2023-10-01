@@ -9,11 +9,28 @@ export interface ICheckbox  {
     [propName: string]: boolean
 }
 
-export interface IFormValues {
+export interface IContactFormVal {
     firstName: string,
     lastName: string,
     email: string,
     phone: string | number,
-    message: string
-    //[propName: string]: string | number
+    message: string,
+    checked: Array<string>
+}
+
+export interface ISubscrFormVal {
+    email: string
+}
+
+export interface IValidateVal<T> {
+    form: string
+    values: T
+}
+
+export interface IValidationErrors {
+    firstName?: string,
+    lastName?: string,
+    email?: string,
+    phone?: string | number,
+    message?: string
 }

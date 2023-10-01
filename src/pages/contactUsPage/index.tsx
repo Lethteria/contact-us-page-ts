@@ -1,7 +1,5 @@
 import React from "react";
 import styles from "./contactUsPage.module.scss"
-
-//import ContactUsMainBlock from "../../components/contactUsMainBlock";
 import {Container} from "@mui/material";
 import PageContentHeader from "../../components/pageContentHeader";
 import PageContentMainBlock from "../../components/pageContentMainBlock";

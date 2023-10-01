@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 import styles from "./contactUsForm.module.scss";
-
 import {checkboxLabels, inputData} from "../../data/formIntups";
 import {Button, Grid, TextField} from "@mui/material";
-import {ICheckbox, IFormValues} from "../../types/forms";
+import {IContactFormVal, IValidateVal} from "../../types/forms";
 import CheckboxBlock from "../checkboxBlock";
 import Modal from "../modal";
+import {useFormik} from "formik";
+import {FormValidate} from "../../helpFunctions/validateForm";
 
 export default function ContactUsForm(){
 
@@ -17,62 +18,42 @@ export default function ContactUsForm(){
 
     const onCloseModal = () => {
         setOpenModal(false);
+        formik.resetForm()
     };
 
 
-    const initialInputState:IFormValues = {
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        message: ""
-    }
-
-    let obj:ICheckbox = {}
-    const initialCheckboxState: ICheckbox = checkboxLabels.reduce(
-        (result, item) => {
-            let key = item;
-            result[key] =  false
-            return result
+    const initialInputState: IValidateVal<IContactFormVal> = {
+         form: "contactUs",
+         values: {
+            firstName: "",
+            lastName: "",
+            email: "",
+            phone: "",
+            message: "",
+            checked: []
         }
-        , obj
-    )
-
-    const [inputValues, setInputValues] = useState<IFormValues>(initialInputState);
-
-    const [isChecked, setIsChecked] = useState(initialCheckboxState);
-
-    function onChangeInput(e:React.ChangeEvent<HTMLInputElement>){
-        let value = e.target.value
-        let name = e.target.name
-        setInputValues((prevState) => { return {...prevState, [name]: value} })
     }
 
-    function onChangeChecked(e: React.ChangeEvent<HTMLInputElement>){
-        let target = e.target
-        let key = target.value
-        setIsChecked({...isChecked,
-                [key]: target.checked
-            }
-        );
-    }
+    const validate = FormValidate(initialInputState);
 
-    function onSubmitForm(e: React.FormEvent<HTMLFormElement>){
-        e.preventDefault();
-        onOpenModal();
-    }
+    const formik = useFormik({
+        initialValues: initialInputState.values,
+        validate,
+        onSubmit: (values) => {
+            onOpenModal();
+        },
+    });
 
     return(
         <div className={styles.wrap}>
 
-            <form onSubmit={onSubmitForm}>
+            <form onSubmit={formik.handleSubmit}>
                 <Grid container justifyContent="flex-end" spacing={5}>
                     {
                         inputData.map((item) => (
                             <Grid item xs={12} sm={6} key={item.name}>
                                 <TextField
                                     label={item.label}
-                                    name={item.name}
                                     type={item.type}
                                     placeholder={item.placeholder }
                                     color="greyColor"
@@ -81,14 +62,16 @@ export default function ContactUsForm(){
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
-                                    //focused
                                     className={styles.input}
-                                    value={inputValues[item.name as keyof IFormValues]}
-                                    onChange={onChangeInput}
-                                    //{...InputFieldProps}
-                                    //value={formik.values[item.name]}
-                                    //onChange={formik.handleChange}
+                                    {...formik.getFieldProps(item.name)}
+                                    error = {formik.touched[item.name as keyof IContactFormVal]
+                                        && Boolean(formik.errors[item.name as keyof IContactFormVal])
+                                    }
+                                    helperText={formik.touched[item.name as keyof IContactFormVal]
+                                        && formik.errors[item.name as keyof IContactFormVal]
+                                    }
                                 />
+
                             </Grid>
                         ))
                     }
@@ -96,10 +79,8 @@ export default function ContactUsForm(){
                     <Grid item xs={12}>
                         <h4>Select Subject?</h4>
                         <CheckboxBlock labels={checkboxLabels}
-                                       isChecked={isChecked}
-                                       onChange={onChangeChecked}
-                                       //checkedArr={formik.values.checked}
-                                       //onChange = {formik.handleChange}
+                                       checkedArr={formik.values.checked}
+                                       onChange={formik.handleChange}
                         />
                     </Grid>
 
@@ -107,7 +88,6 @@ export default function ContactUsForm(){
                         <TextField
                             label="Message"
                             type="textarea"
-                            name="message"
                             placeholder="Write your message.."
                             color="greyColor"
                             variant = "standard"
@@ -115,13 +95,14 @@ export default function ContactUsForm(){
                             InputLabelProps={{
                                 shrink: true,
                             }}
-                            //focused
-                            value={inputValues.message}
-                            onChange={onChangeInput}
                             className={styles.input}
-
-                            //value={formik.values.message}
-                            //onChange={formik.handleChange}
+                            {...formik.getFieldProps('message')}
+                            error = {formik.touched.message
+                                && Boolean(formik.errors.message)
+                            }
+                            helperText={formik.touched.message
+                                && formik.errors.message
+                            }
                         />
                     </Grid>
 
@@ -141,7 +122,7 @@ export default function ContactUsForm(){
 
             <Modal openModal={openModal}
                    onCloseModal={onCloseModal}
-                   selectedValue={[inputValues, isChecked]}
+                   data={formik.values}
             />
 
         </div>
