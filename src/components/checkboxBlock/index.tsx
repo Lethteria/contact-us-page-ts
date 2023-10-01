@@ -1,8 +1,7 @@
-import React, {useState} from "react";
+import React from "react";
 import {Checkbox, FormControlLabel} from "@mui/material";
 import {CheckCircle, Circle} from "@mui/icons-material";
 import styles from "./checkboxBlock.module.scss";
-import {ICheckbox} from "../../types/forms";
 
 type CheckboxBlockProps = {
     labels: string[]
